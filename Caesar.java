@@ -50,13 +50,23 @@ public class Caesar {
     resultado = FO
      */
 
-    public static String codificar( String input, int shift){
+    public static String codificar( String input, int shift, boolean encode){
         char letras[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
         String resultado = "";
         input = input.toUpperCase();
         //SI podemos codificar
         if(shift >= -25 && shift <= 25){
+
+            //encode = true -> Si CODIFICAMOS o ENCRIPTAMOS
+            //encode = false -> SI DECODIFICAMOS o DESENCRIPTAMOS
+
+            if(!encode) {
+                //Si estamos DECODIFICANDO debemos de hacer lo contrario
+                shift *= -1; //Por lo tanto ponemos el shift con signo negativo/positivo
+            }
+
+
             //Recorremos todas las letras
             for(int i=0; i<input.length(); i++){
                 
@@ -103,8 +113,12 @@ public class Caesar {
     }    
 
     public static void main( String args[] ){
-        String input = "IR";
-        int shift = -3;
-        System.out.println( codificar(input, shift) );
+        String input = "HOLAZ";
+        int shift = 3;
+        System.out.println("Codificado:" + codificar(input, shift, true) );
+
+        String input_codificado = "KRODC";
+        int shift_c = 3;
+        System.out.println("Decodificado:"+ codificar(input_codificado, shift_c, false) );
     }
 }
